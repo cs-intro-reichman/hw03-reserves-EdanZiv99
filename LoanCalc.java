@@ -17,7 +17,7 @@ public class LoanCalc {
 		double rate = Double.parseDouble(args[1]);
 		int n = Integer.parseInt(args[2]);
 		System.out.println("Loan sum = " + loan + ", interest rate = " + rate + "%, periods = " + n);
-		
+		endBalance(loan, rate, n, 10000);  
 		// Computes the periodical payment using brute force search
 		System.out.print("Periodical payment, using brute force: ");
 		System.out.printf("%.2f", bruteForceSolver(loan, rate, n, epsilon));
@@ -39,9 +39,14 @@ public class LoanCalc {
 	*/
 	// Side effect: modifies the class variable iterationCounter.
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {  
-    	// Replace the following statement with your code
-    	return 0;
-    }
+    	double payment = loan/n;
+		while (endBalance(loan, rate, n, payment) > 0) {
+			payment = payment + epsilon; 
+			iterationCounter++;  	 	
+		} 
+		return payment;
+	} 
+    
     
     /**
 	* Uses bisection search to compute an approximation of the periodical payment 
@@ -51,8 +56,23 @@ public class LoanCalc {
 	*/
 	// Side effect: modifies the class variable iterationCounter.
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {  
-    	// Replace the following statement with your code
-    	return 0;
+    	double low = 0; 
+		double high = loan;  
+		iterationCounter = 0;
+		double payment;
+		double end;  
+		do {
+			payment = (low + high) / 2;
+			end = endBalance(loan, rate, n, payment);
+			if (end > 0) {
+				low = payment; 
+			} else {
+				high = payment;
+			} 
+			iterationCounter++; 
+		} while (Math.abs(end) >= epsilon);
+		
+    	return payment;
     }
 	
 	/**
@@ -60,7 +80,9 @@ public class LoanCalc {
 	* interest rate (as a percentage), the number of periods (n), and the periodical payment.
 	*/
 	private static double endBalance(double loan, double rate, int n, double payment) {
-		// Replace the following statement with your code
-    	return 0;
+		for (int i = 1; i <= n; i++) {
+			loan = ((loan - payment) * rate);  
+		}
+    	return loan;
 	}
 }
