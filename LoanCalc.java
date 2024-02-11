@@ -31,6 +31,7 @@ public class LoanCalc {
 		System.out.println("number of iterations: " + iterationCounter);
 	}
 	
+	
 	/**
 	* Uses a sequential search method  ("brute force") to compute an approximation
 	* of the periodical payment that will bring the ending balance of a loan close to 0.
