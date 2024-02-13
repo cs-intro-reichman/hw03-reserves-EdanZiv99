@@ -87,4 +87,4 @@ public class LoanCalc {
 		}
     	return loan;
 	}
-}
+}   
