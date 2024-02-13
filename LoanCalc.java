@@ -44,7 +44,7 @@ public class LoanCalc {
 		while (endBalance(loan, rate, n, payment) > 0) {
 			iterationCounter++;
 			payment = payment + epsilon;
-			endBalance(loan, rate, n, payment) 
+			endBalance(loan, rate, n, payment); 
 			
 		} 
 		return payment;
