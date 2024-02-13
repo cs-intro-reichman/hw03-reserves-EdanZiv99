@@ -62,10 +62,9 @@ public class LoanCalc {
     	double low = loan/n; 
 		double high = loan + 1;  
 		iterationCounter = 0;
-		double payment = (low + high / 2);
-		iterationCounter = 0;  
+		double payment = (low + high / 2); 
 
-		while ((Math.abs(payment) >= epsilon)) {
+		while ((high - payment > epsilon)) {
 			if (endBalance(loan, rate, n, payment) >= 0) {
 				low = payment;
 			} else {
@@ -74,9 +73,9 @@ public class LoanCalc {
 			payment = (low + high) / 2; 
 			iterationCounter++; 
 		} 
-		
-    	return payment;
-    }
+		return payment;
+   	}
+	
 	
 	/**
 	* Computes the ending balance of a loan, given the sum of the loan, the periodical

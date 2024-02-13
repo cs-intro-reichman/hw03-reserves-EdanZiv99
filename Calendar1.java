@@ -43,11 +43,15 @@ public class Calendar1 {
 		}
 		while (dayOfWeek <= 7) { 
 			dayOfWeek++;
-			if (dayOfWeek > 7) {
-				dayOfWeek = 1; 
+				if (dayOfWeek > 7) {
+					dayOfWeek = 1; 
 			}  
 		}
-		while (day)	
+		while (dayOfMonth <= nDaysInMonth(month, year)) {
+				dayOfMonth++;
+				 
+			
+		}	
 	} 
 		 
     // Returns true if the given year is a leap year, false otherwise.
