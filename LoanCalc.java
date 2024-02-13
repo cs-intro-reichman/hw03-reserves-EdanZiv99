@@ -31,7 +31,7 @@ public class LoanCalc {
 		System.out.println("number of iterations: " + iterationCounter);
 	}
 	
-	
+
 	/**
 	* Uses a sequential search method  ("brute force") to compute an approximation
 	* of the periodical payment that will bring the ending balance of a loan close to 0.
@@ -42,8 +42,10 @@ public class LoanCalc {
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {  
     	double payment = loan/n;
 		while (endBalance(loan, rate, n, payment) > 0) {
-			payment = payment + epsilon; 
-			iterationCounter++;  	 	
+			iterationCounter++;
+			payment = payment + epsilon;
+			endBalance(loan, rate, n, payment) 
+			
 		} 
 		return payment;
 	} 
@@ -82,7 +84,7 @@ public class LoanCalc {
 	*/
 	private static double endBalance(double loan, double rate, int n, double payment) {
 		for (int i = 1; i <= n; i++) {
-			loan = ((loan - payment) * rate);  
+			loan = (loan - payment) * (1 + (rate/100));  
 		}
     	return loan;
 	}
